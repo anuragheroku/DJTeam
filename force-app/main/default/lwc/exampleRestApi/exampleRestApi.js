@@ -37,32 +37,6 @@ export default class CreateAccount extends LightningElement {
                     this.data = response.json();
                 }
 
-                if (data) {
-
-
-
-for (const [country, capital] of Object.entries(obj))
-{
-
-}
-    console.log(country, capital);  
-
-
-
-
-                    
-                    for(const list of data){
-                        const option = {
-                            label: list.navn,
-                            value: list.organisasjonsnummer
-                        };
-                        // this.selectOptions.push(option);
-                        this.selectOptions = [ ...this.selectOptions, option ];
-                    }
-                } else if (error) {
-                    console.error(error);
-                }
-
             })
 
         return selectOptions;
