@@ -18,60 +18,11 @@ export default class CreateAccount extends LightningElement {
     @track error;
     @track accountId;
     @track value = 'VELFAC';
-
-    name = '';
-
-    get selectOptions() {
-        
-
-        fetch(QUERY_URL)
-            .then(response => {
-                // fetch isn't throwing an error if the request fails.
-                // Therefore we have to check the ok property.
-           
-                   return response.json();
-                
-
-
-            }).then(data => {
-                // Work with JSON data here
-                console.log('here',JSON.stringify(data._embedded.enheter))
-                console.log('here2',data._embedded.enheter)
-                pairvalue=[]
-
-                for (let index = 0; index < data._embedded.enheter.length; index++) {
-                    const element = data._embedded.enheter[index].organisasjonsnummer;
-                    console.log('organisasjonsnummer',element)
-
-                    const value = data._embedded.enheter[index].navn;
-                    console.log('val',value)
-
-                    pairvalue[index]={label:element,value:value}
-
-                }
-
-                console.log('combo',selectOptions)
-
-                return pairvalue
-
-
-              })
-              .catch(err => {
-                console.log('errorr',err)
-              });
-        //return selectOptions;
-
-
-
-        /*return [
-            { label: 'organisasjonsnummer', value: '' },
-            { label: 'Test Picklist value', value: '' },
-        ];*/
-    }
-
+    pairvalue=[];
 
 
     handleChange(event) {
+        masterValue();
         this.value = event.detail.value;
     }
 
@@ -135,6 +86,45 @@ export default class CreateAccount extends LightningElement {
                 );
             })
         }
+
+
+   
+    masterValue()
+    {
+        fetch(QUERY_URL)
+            .then(response => {
+                // fetch isn't throwing an error if the request fails.
+                // Therefore we have to check the ok property.
+           
+                   return response.json();
+                
+
+
+            }).then(data => {
+                // Work with JSON data here
+                console.log('here',JSON.stringify(data._embedded.enheter))
+                console.log('here2',data._embedded.enheter)
+
+                for (let index = 0; index < data._embedded.enheter.length; index++) {
+                    const element = data._embedded.enheter[index].organisasjonsnummer;
+                    console.log('organisasjonsnummer',element)
+
+                    const value = data._embedded.enheter[index].navn;
+                    console.log('val',value)
+
+                    this.pairvalue[index]={label:element,value:value}
+
+                }
+
+                console.log('combo',this.pairvalue)
+
+
+              })
+              .catch(err => {
+                console.log('errorr',err)
+              });
+    };
+
     }
 
 

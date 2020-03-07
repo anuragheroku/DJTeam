@@ -2,8 +2,14 @@
     <lightning-card title="Account Quick Create" icon-name="standard:account">
         <div class="slds-m-around_medium">
                     <lightning-layout-item>
+                        <p class="slds-m-bottom_small">
+                            <lightning-button
+                                label="Load Contacts"
+                                onclick={masterValue}
+                            ></lightning-button>
+                        </p>
                           <lightning-combobox
-                             options={selectOptions}
+                             options={masterValue}
                              onchange={handleChange} 
                              placeholder="Select Progress"
 
@@ -12,6 +18,7 @@
                     </lightning-layout-item>
                 </div>
                 <p>Selected value is: {value}</p>
+                <p>Selected combo is: {pairvalue}</p>
 
         <div class="slds-m-around_medium">
             <lightning-layout vertical-align="end" class="slds-m-bottom_small">
