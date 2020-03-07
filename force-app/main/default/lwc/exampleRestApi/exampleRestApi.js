@@ -8,8 +8,6 @@ import Address_FIELD from '@salesforce/schema/Account.BillingAddress';
 import Employee_FIELD from '@salesforce/schema/Account.NumberOfEmployees';
 
 
-
-
 const QUERY_URL =
     'https://data.brreg.no/enhetsregisteret/api/enheter/';
 
@@ -20,16 +18,11 @@ export default class CreateAccount extends LightningElement {
     @track error;
     @track accountId;
     @track value = 'VELFAC';
-    ready=0;
-
 
     name = '';
 
-
     get selectOptions() {
-
-        //var data;
-        var selectOptions=[];
+        
 
         fetch(QUERY_URL)
             .then(response => {
@@ -44,6 +37,7 @@ export default class CreateAccount extends LightningElement {
                 // Work with JSON data here
                 console.log('here',JSON.stringify(data._embedded.enheter))
                 console.log('here2',data._embedded.enheter)
+                pairvalue=[]
 
                 for (let index = 0; index < data._embedded.enheter.length; index++) {
                     const element = data._embedded.enheter[index].organisasjonsnummer;
@@ -52,30 +46,20 @@ export default class CreateAccount extends LightningElement {
                     const value = data._embedded.enheter[index].navn;
                     console.log('val',value)
 
-                    selectOptions[index]={label:element,value:value}
-
-
-
+                    pairvalue[index]={label:element,value:value}
 
                 }
 
                 console.log('combo',selectOptions)
 
-
+                return pairvalue
 
 
               })
               .catch(err => {
                 console.log('errorr',err)
               });
-        ready=1;
-        return selectOptions;
-
-
-        /*return [
-            { label: 'Test Picklist value', value: '' },
-            { label: 'Test Picklist value', value: '' },
-        ];*/
+        //return selectOptions;
 
 
 
