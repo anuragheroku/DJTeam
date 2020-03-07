@@ -19,26 +19,56 @@ export default class CreateAccount extends LightningElement {
     @track org =false;
     @track error;
     @track accountId;
+    @track value = 'VELFAC';
+    ready=0;
 
 
     name = '';
 
 
-    get options() {
+    get selectOptions() {
 
-        const data={};
-        var selectOptions={};
+        //var data;
+        var selectOptions=[];
 
         fetch(QUERY_URL)
             .then(response => {
                 // fetch isn't throwing an error if the request fails.
                 // Therefore we have to check the ok property.
-                if (!response.ok) {
-                    this.data = response.json();
+           
+                   return response.json();
+                
+
+
+            }).then(data => {
+                // Work with JSON data here
+                console.log('here',JSON.stringify(data._embedded.enheter))
+                console.log('here2',data._embedded.enheter)
+
+                for (let index = 0; index < data._embedded.enheter.length; index++) {
+                    const element = data._embedded.enheter[index].organisasjonsnummer;
+                    console.log('organisasjonsnummer',element)
+
+                    const value = data._embedded.enheter[index].navn;
+                    console.log('val',value)
+
+                    selectOptions[index]={label:element,value:value}
+
+
+
+
                 }
 
-            })
+                console.log('combo',selectOptions)
 
+
+
+
+              })
+              .catch(err => {
+                console.log('errorr',err)
+              });
+        ready=1;
         return selectOptions;
 
 

@@ -3,16 +3,16 @@
         <div class="slds-m-around_medium">
                     <lightning-layout-item>
                           <lightning-combobox
-                             name="progress"
-                             label="Country"
-                             value=""
-                             placeholder="Select a Country"
-                             options={options}
-                             onchange={handleChange}
+                             options={selectOptions}
+                             onchange={handleChange} 
+                             placeholder="Select Progress"
+
                             required
                             ></lightning-combobox>
                     </lightning-layout-item>
                 </div>
+                <p>Selected value is: {value}</p>
+
         <div class="slds-m-around_medium">
             <lightning-layout vertical-align="end" class="slds-m-bottom_small">
 
