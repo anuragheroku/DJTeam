@@ -5,6 +5,7 @@ export default class EventWithData extends LightningElement {
     selectedContact;
 
     @wire(getContactList) contacts;
+    
 
     handleSelect(event) {
         const contactId = event.detail;

@@ -1,5 +1,7 @@
 <template>
     <lightning-card title="Account Quick Create" icon-name="standard:account">
+        <template if:true={isReady}>
+            {pValue}
         <div class="slds-m-around_medium">
                     <lightning-layout-item>
                         <p class="slds-m-bottom_small">
@@ -9,7 +11,9 @@
                             ></lightning-button>
                         </p>
                           <lightning-combobox
-                             options={masterValue}
+                             options={pValue}
+                             key={label}
+                             value={value}
                              onchange={handleChange} 
                              placeholder="Select Progress"
 
@@ -74,6 +78,6 @@
             -->
         </div>
 
-
+    </template>
     </lightning-card>
 </template>

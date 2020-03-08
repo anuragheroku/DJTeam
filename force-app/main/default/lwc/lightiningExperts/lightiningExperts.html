@@ -1,0 +1,15 @@
+<template>
+  <lightning-card title="Our Experts">
+    <lightning-layout class="">
+    <template if:true={resources.data}>
+      <template for:each={resources.data} for:item="resource">
+        {resource.Id} {resource.Name}
+      </template>
+
+      <template if:true={resources.error}>
+        <c-error-panel errors={resources.error}></c-error-panel>
+      </template>
+    </template>
+</lightning-layout>
+  </lightning-card>
+</template>
