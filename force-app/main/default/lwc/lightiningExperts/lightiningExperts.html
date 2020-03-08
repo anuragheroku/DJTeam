@@ -1,15 +1,16 @@
 <template>
-  <lightning-card title="Our Experts">
-    <lightning-layout class="">
+  <lightning-card title="Our Experts" icon-name="standard:logging">
     <template if:true={resources.data}>
+      <lightning-layout class="slds-m-around_medium">
+      <lightning-layout-item>
       <template for:each={resources.data} for:item="resource">
-        {resource.Id} {resource.Name}
-      </template>
-
-      <template if:true={resources.error}>
-        <c-error-panel errors={resources.error}></c-error-panel>
-      </template>
+        <c-expert-list-item key={resource.Id} resource={resource} onupdateresource={handleSayHi}></c-expert-list-item>
+        </template>
+    </lightning-layout-item>
+    </lightning-layout>
     </template>
-</lightning-layout>
+    <template if:true={resources.error}>
+      <c-error-panel errors={resources.error}></c-error-panel>
+    </template>
   </lightning-card>
 </template>

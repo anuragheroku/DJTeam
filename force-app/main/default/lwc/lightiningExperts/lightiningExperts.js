@@ -5,7 +5,6 @@ export default class LightiningExperts extends LightningElement {
   chosenResource;
 
   @wire(getResourceList) resources;
-  enumn = 1;
 
   handleChosen(eve) {
     console.log("here");
@@ -14,4 +13,17 @@ export default class LightiningExperts extends LightningElement {
       resource => resource.Id === resourceId
     );
   }
+
+  handleClick() {
+    //firing an child method
+    this.template.querySelector("c-expert-list-item").handleValueChange();
+  }
+
+  handleSayHi()
+  {
+    alert("Hi there");
+
+  }
+
+
 }

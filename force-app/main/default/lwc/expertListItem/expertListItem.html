@@ -1,0 +1,13 @@
+<template>
+    <template if:true={resource}>
+      <p>{resource.First_Name__c}</p>
+      <p>{resource.Last_Name__c}</p>
+      <p>{resource.Primary_Salesforce_Role__c}</p>
+      <p>{resource.Resource_Description__c}</p>
+      <p>{resource.Available_from_Date__c}</p>
+      <button onclick={updateResource}>Do you want to say hi??</button>
+    </template>
+    <template if:false={resource}>
+      <p>No resource data available.</p>
+    </template>
+</template>
